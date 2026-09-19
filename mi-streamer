@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>sara_no3 — Directo</title>
+    <title>sara_no3 — Watch</title>
 
     <style>
         * {
@@ -14,149 +14,388 @@
             padding: 0;
         }
 
+        :root {
+            --purple: #9147ff;
+            --purple-dark: #6f32c9;
+            --background: #07070a;
+            --panel: rgba(16, 16, 23, 0.94);
+            --border: rgba(255,255,255,0.08);
+            --text: #ffffff;
+            --muted: #9999a6;
+        }
+
         body {
-            background: #0b0b10;
-            color: white;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(145,71,255,.18), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(145,71,255,.10), transparent 30%),
+                var(--background);
+            color: var(--text);
             font-family: Arial, Helvetica, sans-serif;
         }
 
+        /* =========================
+           BARRA SUPERIOR
+        ========================= */
+
         header {
-            height: 65px;
-            background: #15151d;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 64px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 25px;
-            border-bottom: 1px solid #292936;
+
+            padding: 0 24px;
+
+            background: rgba(8,8,12,.92);
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-size: 23px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--purple);
+            border-radius: 9px;
+
+            font-size: 18px;
+        }
+
+        .brand span {
+            color: var(--purple);
+        }
+
+        .live-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 13px;
+            font-weight: bold;
+            color: #ff4d5a;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+            background: #ff4d5a;
+
+            box-shadow: 0 0 10px rgba(255,77,90,.7);
+        }
+
+        /* =========================
+           CONTENEDOR
+        ========================= */
+
+        main {
+            width: 100%;
+            max-width: 1700px;
+            margin: auto;
+            padding: 22px;
+        }
+
+        /* =========================
+           STREAM
+        ========================= */
+
+        .watch-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 360px;
+
+            gap: 14px;
+
+            min-height: calc(100vh - 110px);
+        }
+
+        .video-wrapper {
+            position: relative;
+
+            width: 100%;
+            aspect-ratio: 16 / 9;
+
+            background: #000;
+
+            border-radius: 12px;
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.45);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+        }
+
+        /* =========================
+           CHAT
+        ========================= */
+
+        .chat-wrapper {
+            height: 100%;
+            min-height: 600px;
+
+            background: var(--panel);
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.35);
+        }
+
+        .chat-header {
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 16px;
+
+            background: rgba(255,255,255,.025);
+
+            border-bottom: 1px solid var(--border);
+
+            font-size: 14px;
             font-weight: bold;
         }
 
-        .logo span {
-            color: #9147ff;
+        .chat-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        nav a {
-            color: #aaa;
-            text-decoration: none;
-            margin-left: 20px;
+        .chat-title::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+            background: var(--purple);
         }
 
-        nav a:hover {
-            color: white;
+        .chat-wrapper iframe {
+            width: 100%;
+            height: calc(100% - 50px);
+
+            border: 0;
         }
 
-        main {
-            max-width: 1450px;
-            margin: auto;
-            padding: 25px;
+        /* =========================
+           INFORMACIÓN
+        ========================= */
+
+        .channel-card {
+            margin-top: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 20px;
+
+            background: var(--panel);
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
         }
 
-        .stream-layout {
-            display: grid;
-            grid-template-columns: 1fr 350px;
+        .channel-info {
+            display: flex;
+            align-items: center;
             gap: 15px;
         }
 
-        .video {
-            background: #000;
-            aspect-ratio: 16 / 9;
-            border-radius: 8px;
-            overflow: hidden;
-        }
+        .avatar {
+            width: 58px;
+            height: 58px;
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .chat {
-            background: #15151d;
-            min-height: 500px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .info {
-            margin-top: 20px;
-            background: #15151d;
-            padding: 22px;
-            border-radius: 10px;
-        }
-
-        .info h1 {
-            font-size: 27px;
-            margin-bottom: 7px;
-        }
-
-        .live {
-            color: #ff4b4b;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .description {
-            color: #bbb;
-            line-height: 1.6;
-        }
-
-        .social {
-            margin-top: 18px;
             display: flex;
-            gap: 12px;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            background:
+                linear-gradient(135deg, #9147ff, #5c25a8);
+
+            border-radius: 50%;
+
+            font-size: 20px;
+            font-weight: bold;
+
+            box-shadow:
+                0 0 25px rgba(145,71,255,.25);
+        }
+
+        .channel-name {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .channel-description {
+            margin-top: 5px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+        .watch-button {
+            padding: 11px 18px;
+
+            background: var(--purple);
+
+            color: white;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: .2s;
+        }
+
+        .watch-button:hover {
+            background: #772ce8;
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           REDES
+        ========================= */
+
+        .socials {
+            margin-top: 14px;
+
+            display: flex;
+            gap: 10px;
+
             flex-wrap: wrap;
         }
 
-        .social a {
-            background: #9147ff;
-            color: white;
-            text-decoration: none;
-            padding: 10px 16px;
+        .social {
+            padding: 9px 14px;
+
+            background: rgba(255,255,255,.05);
+
+            border: 1px solid var(--border);
             border-radius: 7px;
-            transition: 0.2s;
-        }
 
-        .social a:hover {
-            background: #772ce8;
-            transform: translateY(-2px);
-        }
+            color: #ccc;
 
-        .twitch-button {
-            display: inline-block;
-            margin-top: 18px;
-            padding: 12px 20px;
-            background: #9147ff;
-            color: white;
             text-decoration: none;
-            border-radius: 7px;
-            font-weight: bold;
+
+            font-size: 13px;
+
+            transition: .2s;
         }
 
-        .twitch-button:hover {
-            background: #772ce8;
+        .social:hover {
+            background: rgba(145,71,255,.15);
+            border-color: rgba(145,71,255,.4);
+            color: white;
         }
 
-        @media (max-width: 900px) {
+        /* =========================
+           FOOTER
+        ========================= */
 
-            .stream-layout {
+        footer {
+            padding: 25px;
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .watch-layout {
                 grid-template-columns: 1fr;
             }
 
-            .chat {
+            .chat-wrapper {
+                min-height: 500px;
                 height: 500px;
             }
 
-            nav {
-                display: none;
+            .channel-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 0 14px;
             }
 
             main {
-                padding: 12px;
+                padding: 10px;
             }
+
+            .brand {
+                font-size: 17px;
+            }
+
+            .live-status {
+                font-size: 11px;
+            }
+
+            .channel-card {
+                padding: 15px;
+            }
+
+            .channel-name {
+                font-size: 18px;
+            }
+
+            .watch-button {
+                width: 100%;
+                text-align: center;
+            }
+
         }
     </style>
 </head>
@@ -165,25 +404,29 @@
 
 <header>
 
-    <div class="logo">
+    <div class="brand">
+        <div class="brand-icon">▶</div>
+
         sara<span>_no3</span>
     </div>
 
-    <nav>
-        <a href="#">Inicio</a>
-        <a href="#sobre">Sobre mí</a>
-        <a href="#redes">Redes</a>
-    </nav>
+    <div class="live-status">
+        <div class="live-dot"></div>
+        EN DIRECTO
+    </div>
 
 </header>
 
+
 <main>
 
-    <div class="stream-layout">
+    <div class="watch-layout">
 
-        <!-- STREAM DE SARA_NO3 -->
+        <!-- =========================
+             REPRODUCTOR TWITCH
+        ========================== -->
 
-        <div class="video">
+        <div class="video-wrapper">
 
             <iframe
                 src="https://player.twitch.tv/?channel=sara_no3&parent=mi-streamer.pages.dev"
@@ -193,9 +436,23 @@
         </div>
 
 
-        <!-- CHAT DE TWITCH -->
+        <!-- =========================
+             CHAT TWITCH
+        ========================== -->
 
-        <div class="chat">
+        <div class="chat-wrapper">
+
+            <div class="chat-header">
+
+                <div class="chat-title">
+                    Chat
+                </div>
+
+                <span style="color:#777;">
+                    sara_no3
+                </span>
+
+            </div>
 
             <iframe
                 src="https://www.twitch.tv/embed/sara_no3/chat?parent=mi-streamer.pages.dev">
@@ -206,55 +463,89 @@
     </div>
 
 
-    <!-- INFORMACIÓN -->
+    <!-- =========================
+         INFORMACIÓN DEL CANAL
+    ========================== -->
 
-    <section class="info" id="sobre">
+    <section class="channel-card">
 
-        <h1>sara_no3</h1>
+        <div class="channel-info">
 
-        <div class="live">
-            ● DIRECTO EN TWITCH
+            <div class="avatar">
+                S
+            </div>
+
+            <div>
+
+                <div class="channel-name">
+                    sara_no3
+                </div>
+
+                <div class="channel-description">
+                    Bienvenid@ al directo 💜
+                </div>
+
+            </div>
+
         </div>
 
-        <p class="description">
-            Bienvenid@ a la página de sara_no3 💜
-            <br>
-            Aquí puedes ver sus directos, participar en el chat
-            y encontrar sus redes sociales.
-        </p>
 
         <a
-            class="twitch-button"
+            class="watch-button"
             href="https://www.twitch.tv/sara_no3"
             target="_blank">
-            Ver canal en Twitch
+
+            Ver en Twitch
+
         </a>
-
-        <div class="social" id="redes">
-
-            <a
-                href="https://www.twitch.tv/sara_no3"
-                target="_blank">
-                Twitch
-            </a>
-
-            <a href="#" target="_blank">
-                YouTube
-            </a>
-
-            <a href="#" target="_blank">
-                Instagram
-            </a>
-
-            <a href="#" target="_blank">
-                TikTok
-            </a>
-
-        </div>
 
     </section>
 
+
+    <!-- =========================
+         REDES
+    ========================== -->
+
+    <div class="socials">
+
+        <a
+            class="social"
+            href="https://www.twitch.tv/sara_no3"
+            target="_blank">
+            🟣 Twitch
+        </a>
+
+        <a
+            class="social"
+            href="#"
+            target="_blank">
+            ▶ YouTube
+        </a>
+
+        <a
+            class="social"
+            href="#"
+            target="_blank">
+            ◎ Instagram
+        </a>
+
+        <a
+            class="social"
+            href="#"
+            target="_blank">
+            ♪ TikTok
+        </a>
+
+    </div>
+
 </main>
+
+
+<footer>
+
+    sara_no3 · Página creada para visualizar el directo
+
+</footer>
 
 </body>
 </html>
