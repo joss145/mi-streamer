@@ -1,0 +1,195 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>sara_no3 — Directo</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0b0b10;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            height: 65px;
+            background: #15151d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            border-bottom: 1px solid #292936;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #9147ff;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .stream-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 15px;
+        }
+
+        .video {
+            background: #000;
+            aspect-ratio: 16 / 9;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .chat {
+            background: #15151d;
+            min-height: 500px;
+        }
+
+        .info {
+            margin-top: 20px;
+            background: #15151d;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .info h1 {
+            margin-bottom: 8px;
+        }
+
+        .live {
+            color: #ff4b4b;
+            font-weight: bold;
+        }
+
+        .social {
+            margin-top: 15px;
+        }
+
+        .social a {
+            display: inline-block;
+            margin-right: 15px;
+            color: #9147ff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 900px) {
+            .stream-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .chat {
+                height: 500px;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        Mi<span>Streamer</span>
+    </div>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Sobre mí</a>
+        <a href="#">Redes</a>
+    </nav>
+</header>
+
+<main>
+
+    <div class="stream-layout">
+
+        <!-- VIDEO DE TWITCH -->
+        <div class="video">
+
+            <iframe
+                src="https://player.twitch.tv/?channel=sara_no3&parent=TU-DOMINIO.pages.dev"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <!-- CHAT -->
+        <div class="chat">
+
+            <iframe
+                src="https://www.twitch.tv/embed/sara_no3/chat?parent=TU-DOMINIO.pages.dev">
+            </iframe>
+
+        </div>
+
+    </div>
+
+    <section class="info">
+
+        <h1>sara_no3</h1>
+
+        <p class="live">● EN DIRECTO</p>
+
+        <p style="margin-top: 10px;">
+            Bienvenido a mi página oficial.
+            Aquí puedes ver mis directos y encontrar mis redes.
+        </p>
+
+        <div class="social">
+
+            <a href="https://twitch.tv/sara_no3">
+                Twitch
+            </a>
+
+            <a href="#">
+                YouTube
+            </a>
+
+            <a href="#">
+                Instagram
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
+```
